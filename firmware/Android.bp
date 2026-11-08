@@ -1,0 +1,45 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// Direction A: Symlink directly to native factory firmware partition (/vendor/firmware_mnt)
+// This avoids carrying large binary blobs in the repository.
+
+install_symlink {
+    name: "symlink_firmware_beryllium_odm",
+    device_specific: true,
+    installed_location: "firmware/qcom/sdm845/beryllium",
+    symlink_target: "/vendor/firmware_mnt/image",
+}
+
+install_symlink {
+    name: "symlink_firmware_beryllium_vendor",
+    vendor: true,
+    installed_location: "firmware/qcom/sdm845/beryllium",
+    symlink_target: "/vendor/firmware_mnt/image",
+}
+
+install_symlink {
+    name: "symlink_firmware_beryllium_tas2559",
+    vendor: true,
+    installed_location: "firmware/tas2559_uCDSP.bin",
+    symlink_target: "/vendor/firmware_mnt/image/tas2559_uCDSP.bin",
+}
+
+install_symlink {
+    name: "symlink_firmware_beryllium_ath10k_odm",
+    device_specific: true,
+    installed_location: "firmware/ath10k/WCN3990/hw1.0",
+    symlink_target: "/vendor/firmware_mnt/image",
+}
+
+phony {
+    name: "firmware_beryllium_mainline",
+    required: [
+        "symlink_firmware_beryllium_odm",
+        "symlink_firmware_beryllium_vendor",
+        "symlink_firmware_beryllium_tas2559",
+        "symlink_firmware_beryllium_ath10k_odm",
+    ],
+}

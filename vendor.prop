@@ -1,0 +1,8 @@
+# Bluetooth
+bluetooth.device.default_name=POCO F1
+
+# Fingerprint
+persist.vendor.fingerprint.type=rear
+
+# USB
+vendor.usb.product_string=POCO F1
